@@ -1,21 +1,69 @@
-\<h1 style="text-align: center;">Amazon (Unlocked Phones) Project</h1>
-<p>&nbsp;</p>
+<h1 style="text-align: center;">Amazon (Unlocked Phones) Project</h1>
+<p style="text-align: center;">&nbsp;</p>
 <p style="text-align: center;"><img src="https://i.imgur.com/RESP6oH.png" alt="" width="453" height="125" /></p>
 <p style="text-align: center;">&nbsp;</p>
 <h4 style="text-align: center;">In this project we will use SQL to examine data. This data consists the ratings, prices, reviews and brand name of unlocked phones sold on Amazon.com.</h4>
 <h4 style="text-align: center;">Changes were made to the original dataset. The dataset:</h4>
 <p style="text-align: center;"><em>Credits:&nbsp;<a href="https://www.kaggle.com/PromptCloudHQ/amazon-reviews-unlocked-mobile-phones">https://www.kaggle.com/PromptCloudHQ/amazon-reviews-unlocked-mobile-phones</a>&nbsp;</em></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">&nbsp;</p>
 <p style="text-align: center;"><strong>Here, MySQL was used.</strong></p>
 <p style="text-align: center;">&nbsp;</p>
 <p style="text-align: center;"><strong><img src="https://i.imgur.com/ZRMqfDL.png" alt="" width="320" height="214" /></strong></p>
-<p>&nbsp;</p>
-<p style="text-align: center;">We begin by importing the dataset into MySQL. After the successful import, we can view the dataset.</p>
 <p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">We begin by importing the dataset into MySQL. After the successful import, we can view the dataset (renamed amzn).</p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center; color: #0000ff;">SELECT * FROM amzn;</span></p>
 <p style="text-align: center;"><video controls="controls" width="1212" height="606">
 <source src="https://i.imgur.com/67hiigx.mp4" type="video/mp4" /></video></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">We view the entire dataset here- with setup.</p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="color: #0000ff;">SELECT * FROM amzn ORDER BY Price;</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><img src="https://i.imgur.com/9xriVk7.png" alt="" width="933" height="409" /></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">Here, we view the dataset organised from price, ascending (LOW - HIGH). The cheapest phones appear first with the expensive phones located at the end of the table.&nbsp;</p>
+<p style="text-align: center;">We can see that OtterBox sell phones on Amazon.com at $17.95 with mixed ratings.</p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="color: #0000ff;">SELECT SUM(Price) AS totalvalue FROM amzn;</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><img src="https://i.imgur.com/MUChlHv.png" alt="" width="731" height="326" /></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">$278595.219999... is the total value of the phones sold on Amazon.com. The result is renamed as totavalue.</p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center; color: #0000ff;">SELECT AVG(Price) AS averageprice FROM amzn;</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;"><img src="https://i.imgur.com/WYE1AXs.png" alt="" width="797" height="313" /></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;">The average price of a phone sold on Amazon.com is $149.94 (2dp). Again, the result is renamed as average price.</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center; color: #0000ff;"><span style="text-align: center;">SELECT * FROM amzn WHERE Price &gt; 200 AND Rating = 5;</span></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;"><img src="https://i.imgur.com/QRdMY4D.png" alt="" width="1154" height="409" /></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;">We view the dataset where data is only shown if it meets criteria such as a price greater than $200 and a rating of 5.</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center; color: #0000ff;"><span style="text-align: center;">SELECT COUNT(Price) FROM amzn GROUP BY Rating HAVING COUNT(Price) &gt; 500;</span></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;"><span style="text-align: center;"><img src="https://i.imgur.com/05yCjUK.png" alt="" width="855" height="330" /></span></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;">Here, we see the number of results in amzn where a price is greater than $500.</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center; color: #0000ff;"><span style="text-align: center;">SELECT Count(*) AS numofphones FROM amzn WHERE Price &gt; 175 AND Rating = 5;</span></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;"><img src="https://i.imgur.com/3sbIfEN.png" alt="" width="904" height="402" /></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;">The number of phones sold on Amazon.com where price is greater than $175 and a rating of 5 is 240. The result column is renamed as numofphones.</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center; color: #0000ff;"><span style="text-align: center;">SELECT * FROM amzn ORDER BY Price DESC Limit 1;</span></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center; color: #0000ff;"><span style="text-align: center;"><img src="https://i.imgur.com/NQ2XMXA.png" alt="" width="774" height="409" /></span></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;"><span style="text-align: center;">Here we get the result with the greatest price. This mobile phone by Lenovo sold on Amazon.com for $2000. This is the most expensive phone in the amzn dataset.</span></span></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h3 style="text-align: center;"><span style="text-align: center;"><span style="text-align: center;">This concludes the project. Additional updates&nbsp;involving SQL will be added in the near future!</span></span></h3>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
+<p style="text-align: center;"><span style="text-align: center;"><span style="text-align: center;"><video controls="controls" width="300" height="150">
+<source src="https://media.giphy.com/media/xuUmRnrF6uGQM/giphy.gif" /></video></span></span></p>
